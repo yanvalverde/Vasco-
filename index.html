@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vasco">
+<meta name="theme-color" content="#000000">
+<title>Vasco da Gama</title>
+<style>
+:root{--bg:#f2f2f2;--card:#fff;--tx:#111;--mut:#6b6b6b;--ln:#e0e0e0;--w:#1f9d55;--d:#8a8a8a;--l:#d32f2f;--acc:#111;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--card:#141414;--tx:#fff;--mut:#9a9a9a;--ln:#2a2a2a;--acc:#fff}}
+:root[data-theme="dark"]{--bg:#000;--card:#141414;--tx:#fff;--mut:#9a9a9a;--ln:#2a2a2a;--acc:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;max-width:540px;margin:0 auto;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+header{background:#000;color:#fff;padding:20px 18px 14px;border-bottom:4px solid #fff;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;right:-30px;top:-30px;width:130px;height:220%;background:#fff;opacity:.12;transform:rotate(25deg)}
+header h1{margin:0;font-size:24px;letter-spacing:1px;text-transform:uppercase;position:relative}
+header p{margin:3px 0 0;font-size:12px;opacity:.75;position:relative}
+section{display:none;padding:12px 14px}section.on{display:block;animation:in .25s}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.c{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:10px}
+.c h2{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut)}
+.hero{background:#000;color:#fff;border-color:#333}.hero h2{color:#bbb}
+.vs{display:flex;align-items:center;font-size:21px;font-weight:800;margin:10px 0}.vs span{flex:1;text-align:center}.vs i{font-style:normal;opacity:.5;font-size:14px}
+.cd{display:flex;gap:8px;justify-content:center;margin-top:8px}.cd div{background:#222;border-radius:10px;padding:8px 10px;text-align:center;min-width:58px}.cd b{display:block;font-size:22px}.cd small{font-size:10px;color:#aaa}
+.sub{text-align:center;font-size:13px;color:#ccc;margin:2px 0}
+.row{display:flex;gap:8px}.row>.c{flex:1;text-align:center;margin-bottom:10px}.big{font-size:28px;font-weight:800}.mut{color:var(--mut);font-size:12px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}.chips button{flex:none;padding:8px 12px;border-radius:20px;border:1px solid var(--ln);background:var(--card);color:var(--tx);font-size:13px;font-weight:600}.chips button.on{background:var(--acc);color:var(--bg)}
+.g{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:11px 12px;margin-bottom:7px;display:flex;align-items:center;gap:11px}
+.dt{min-width:44px;text-align:center;font-size:11px;color:var(--mut)}.dt b{display:block;font-size:16px;color:var(--tx)}
+.m{flex:1;font-size:14px;font-weight:600}.m small{display:block;font-weight:400;color:var(--mut);font-size:11.5px;margin-top:2px}
+.sc{font-weight:800;font-size:14px;padding:4px 9px;border-radius:8px;color:#fff;white-space:nowrap}.V{background:var(--w)}.E{background:var(--d)}.D{background:var(--l)}
+.tg{font-size:10px;padding:2px 7px;border-radius:9px;background:var(--ln);color:var(--mut);margin-left:6px;font-weight:600}
+.bar{height:8px;background:var(--ln);border-radius:5px;overflow:hidden;margin:6px 0}.bar div{height:100%;background:var(--acc);transition:width .4s}
+.t{display:flex;align-items:center;padding:9px 4px;border-bottom:1px solid var(--ln);font-size:14px}.t:last-child{border:0}.t b:first-child{width:30px}.t span{flex:1}.t.me{font-weight:800;background:rgba(211,47,47,.12);border-radius:8px}.t.z{color:var(--l)}
+.sim{display:flex;align-items:center;justify-content:space-between;padding:8px 0}.sim div{display:flex;align-items:center;gap:12px}.sim button{width:38px;height:38px;border-radius:50%;border:1px solid var(--ln);background:var(--card);color:var(--tx);font-size:20px}.sim b{min-width:18px;text-align:center;font-size:18px}
+.ok{color:var(--w)}.bad{color:var(--l)}
+.i{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--ln);font-size:14px}.i:last-child{border:0}.i em{font-style:normal;font-size:18px;width:22px}.i small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+.badge{font-size:11px;padding:3px 8px;border-radius:9px;color:#fff;font-weight:700;white-space:nowrap;align-self:flex-start}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:540px;margin:0 auto;display:flex;background:#000;border-top:1px solid #333;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;background:none;border:0;color:#888;padding:9px 0 8px;font-size:10px}nav button span{display:block;font-size:19px}nav button.on{color:#fff}
+.note{font-size:11px;color:var(--mut);line-height:1.5;margin:10px 2px}
+ol{margin:6px 0 0;padding-left:20px;font-size:14px;line-height:1.7}
+#intro{position:fixed;inset:0;background:#000;z-index:99;overflow:hidden;transition:opacity .8s}
+#intro.out{opacity:0;pointer-events:none}
+#world{position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px;animation:fly 7s cubic-bezier(.55,.05,.75,.45) forwards}
+@keyframes fly{0%{transform:scale(.55) rotate(-14deg) translateY(120px)}70%{transform:scale(3.2) rotate(-4deg)}100%{transform:scale(8.5) rotate(0)}}
+#clouds{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,#fff 0,#fff0 40%),radial-gradient(ellipse at 80% 70%,#fff 0,#fff0 38%);opacity:.55;animation:cl 4s forwards}
+@keyframes cl{to{opacity:0;transform:scale(2.4)}}
+#ti{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;opacity:0;animation:ti 1.5s 5.3s forwards}
+#ti h1{font-size:40px;letter-spacing:3px;margin:0;text-transform:uppercase;text-shadow:0 2px 20px #000}#ti p{margin:6px 0 22px;letter-spacing:4px;font-size:12px}
+#ti button{padding:13px 34px;border-radius:30px;border:2px solid #fff;background:#000;color:#fff;font-size:15px;font-weight:700;letter-spacing:1px}
+@keyframes ti{to{opacity:1}}
+#sk{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;background:#0008;border:1px solid #fff6;color:#fff;border-radius:16px;padding:6px 12px;font-size:12px;z-index:3}
+
+.c,.g{background:color-mix(in srgb,var(--card) 90%,transparent)}.c.hero{background:#000d}
+section{position:relative;z-index:1}
+.bgt{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;color:var(--tx);opacity:.13}
+.bgt>div{display:flex;flex-direction:column;gap:70px;padding:40px 24px;animation:up 60s linear infinite;transform:rotate(-5deg)}
+.bgt .tc{display:flex;align-items:center;gap:14px;font-weight:800;text-transform:uppercase;letter-spacing:2px}
+.bgt .tc:nth-child(even){align-self:flex-end;flex-direction:row-reverse;text-align:right}
+.bgt svg{width:78px;height:78px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.bgt b{font-size:46px;line-height:1;display:block}.bgt small{font-size:13px;letter-spacing:3px}
+@keyframes up{to{transform:rotate(-5deg) translateY(-50%)}}
+#snd{position:absolute;right:14px;top:16px;z-index:2;background:#fff2;border:1px solid #fff5;color:#fff;border-radius:18px;padding:6px 11px;font-size:15px}
+#cant{position:fixed;right:14px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:6;background:#d32f2f;color:#fff;border:2px solid #fff;border-radius:28px;padding:11px 16px;font-size:14px;font-weight:800;box-shadow:0 4px 18px #0008}
+#cant:active{transform:scale(.93)}
+</style></head><body>
+
+<div id="intro">
+<div id="world"><svg viewBox="0 0 900 900" width="900" height="900">
+<rect width="900" height="900" fill="#2b3a2e"/>
+<g fill="#4a4a4a">
+<rect x="0" y="0" width="190" height="130"/><rect x="210" y="0" width="150" height="180"/><rect x="560" y="0" width="170" height="150"/><rect x="750" y="0" width="150" height="190"/>
+<rect x="0" y="160" width="120" height="200"/><rect x="0" y="540" width="150" height="190"/><rect x="760" y="230" width="140" height="210"/><rect x="750" y="560" width="150" height="170"/>
+<rect x="0" y="760" width="200" height="140"/><rect x="230" y="770" width="170" height="130"/><rect x="470" y="780" width="190" height="120"/><rect x="700" y="770" width="200" height="130"/></g>
+<g fill="#6a6a6a"><rect x="20" y="20" width="60" height="40"/><rect x="230" y="30" width="50" height="60"/><rect x="590" y="25" width="70" height="50"/><rect x="780" y="40" width="60" height="60"/><rect x="25" y="580" width="60" height="50"/><rect x="790" y="600" width="60" height="50"/></g>
+<rect x="0" y="700" width="900" height="30" fill="#222"/><rect x="0" y="200" width="900" height="24" fill="#222"/>
+<ellipse cx="450" cy="450" rx="230" ry="165" fill="#111" stroke="#fff" stroke-width="5"/>
+<ellipse cx="450" cy="450" rx="205" ry="142" fill="#222" stroke="#d8d8d8" stroke-width="4"/>
+<ellipse cx="450" cy="450" rx="175" ry="118" fill="#2a8a3e"/>
+<g fill="#fff" opacity=".18"><rect x="300" y="332" width="50" height="236"/><rect x="400" y="332" width="50" height="236"/><rect x="500" y="332" width="50" height="236"/></g>
+<g fill="none" stroke="#fff" stroke-width="2.5"><rect x="290" y="355" width="320" height="190"/><line x1="450" y1="355" x2="450" y2="545"/><circle cx="450" cy="450" r="28"/><rect x="290" y="410" width="30" height="80"/><rect x="580" y="410" width="30" height="80"/></g>
+<path d="M258 332 L290 332 L290 355 L258 355Z" fill="#000" opacity="0"/>
+<g stroke="#fff" stroke-width="4"><line x1="452" y1="288" x2="452" y2="300"/></g>
+<text x="450" y="268" fill="#fff" font-size="15" font-weight="800" text-anchor="middle" letter-spacing="3" font-family="Arial">SÃO JANUÁRIO</text>
+</svg></div>
+<div id="clouds"></div>
+<div id="ti"><h1>Vasco<br>da Gama</h1><p>GIGANTE DA COLINA</p><button id="go">ENTRAR</button></div>
+<button id="sk">Pular ▸</button>
+</div>
+
+<div class="bgt" id="bgt"></div>
+<header><button id="snd">🔊</button><h1>Vasco da Gama</h1><p>Temporada 2026 • Brasileirão • Sul-Americana • Copa do Brasil</p></header>
+
+<section id="s0" class="on">
+<div class="c hero"><h2>Próximo jogo • Brasileirão R29</h2>
+<div class="vs"><span>Botafogo</span><i>x</i><span>Vasco</span></div>
+<p class="sub">Qua, 07/10 • 20h30 • Nilton Santos • 📺 Prime Video</p>
+<div class="cd" id="cd"></div></div>
+<div class="row"><div class="c"><div class="big">16º</div><div class="mut">Brasileirão</div></div><div class="c"><div class="big">31</div><div class="mut">pontos</div></div><div class="c"><div class="big ok">+2</div><div class="mut">sobre o Z4</div></div></div>
+<div class="c"><h2>Em andamento</h2>
+<div class="i"><em>🏆</em><div>Sul-Americana: semifinal x Boca Juniors<small>Primeira semi continental desde 2011</small></div></div>
+<div class="i"><em>🏆</em><div>Copa do Brasil: semifinal x Palmeiras<small>3ª semifinal seguida</small></div></div>
+<div class="i"><em>⚠️</em><div>Brasileirão: fugir do rebaixamento<small>11 jogos restantes</small></div></div></div>
+<div class="c"><h2>📱 Instalar no iPhone</h2>
+<ol><li>Abra este link no <b>Safari</b> (não dentro do app do Claude)</li><li>Toque em Compartilhar (quadrado com seta)</li><li>"Adicionar à Tela de Início"</li><li>Pronto: ícone do Vasco na tela</li></ol></div>
+</section>
+
+<section id="s1">
+<div class="chips" id="ch"></div><div id="gl"></div>
+<p class="note">Lista parcial: reúne os resultados e jogos que consegui confirmar. Carioca 2026: eliminado na semifinal (9 jogos: 3V 4E 2D).</p>
+</section>
+
+<section id="s2">
+<div class="c"><h2>Zona de rebaixamento</h2>
+<div class="t"><b>16º</b><span>Vasco</span><b>31</b></div>
+<div class="t z"><b>17º</b><span>Grêmio</span><b>29</b></div>
+<div class="t z"><b>18º</b><span>Internacional</span><b>28</b></div>
+<div class="t z"><b>19º</b><span>Remo</span><b>23</b></div>
+<div class="t z"><b>20º</b><span>Chapecoense</span><b>18</b></div></div>
+<div class="c"><h2>Quanto falta</h2>
+<p style="margin:0;font-size:15px;line-height:1.5">Hoje o Vasco tem <b>2 pontos</b> de folga sobre o Grêmio e <b>13 pontos</b> de folga sobre o Remo. Restam <b>11 rodadas</b> (33 pontos).<br>Meta estimada de segurança: <b>45 pontos</b> (referência histórica, não oficial) = faltam <b>14</b>.</p></div>
+<div class="c"><h2>Simulador: os 11 jogos que restam</h2>
+<div class="sim"><span>Vitórias</span><div><button data-k="v" data-d="-1">−</button><b id="v">3</b><button data-k="v" data-d="1">+</button></div></div>
+<div class="sim"><span>Empates</span><div><button data-k="e" data-d="-1">−</button><b id="e">4</b><button data-k="e" data-d="1">+</button></div></div>
+<div class="sim"><span>Derrotas</span><div><b id="dd">4</b></div></div>
+<div class="bar"><div id="pb" style="width:0"></div></div>
+<p id="rs" style="font-size:15px;margin:6px 0 0;font-weight:700"></p></div>
+<p class="note">Tabela após a 28ª rodada (Vasco com 27 jogos: um a menos que os rivais diretos). Adversários restantes: Botafogo, Remo, São Paulo, Corinthians, Flamengo, Athletico-PR, Internacional, Bragantino, Atlético-MG, Vitória e Chapecoense.</p>
+</section>
+
+<section id="s3">
+<div class="c"><h2>Brasileirão 2026 • 27 jogos</h2>
+<div style="display:flex;height:22px;border-radius:8px;overflow:hidden;font-size:12px;color:#fff;font-weight:700;text-align:center;line-height:22px"><div class="V" style="flex:8">8V</div><div class="E" style="flex:7">7E</div><div class="D" style="flex:12">12D</div></div>
+<p class="mut" style="margin:8px 0 0">34 gols pró (1,26/jogo) • 41 contra (1,52/jogo) • saldo −7 • aproveitamento 38%</p></div>
+<div class="c"><h2 class="ok">▲ Melhorando</h2>
+<div class="i"><em>📈</em><div>Posição na tabela<small>Voltou ao 16º e saiu do Z4 após o 5x0 no Coritiba</small></div></div>
+<div class="i"><em>🏆</em><div>Mata-mata<small>Copa do Brasil sem derrota até a semi (4V 2E, 10 gols pró e 3 contra); Sul-Americana com semi após 15 anos</small></div></div>
+<div class="i"><em>🧠</em><div>Reação sob Pedro Emanuel<small>Recuperação na tabela desde a troca de comando</small></div></div>
+<div class="i"><em>⚽</em><div>Thiago Mendes<small>8 gols: melhor temporada da carreira</small></div></div></div>
+<div class="c"><h2 class="bad">▼ Piorando / preocupando</h2>
+<div class="i"><em>🛡️</em><div>Defesa no Brasileirão<small>41 gols sofridos; 4 jogos com 3+ gols tomados (Inter, Bragantino, Santos, Palmeiras)</small></div></div>
+<div class="i"><em>📉</em><div>Poucas vitórias<small>Só 8 em 27 (30%) e 12 derrotas (44%)</small></div></div>
+<div class="i"><em>🎯</em><div>Ataque pouco goleador<small>Artilheiro do time tem só 8 gols em 40 jogos</small></div></div>
+<div class="i"><em>🔁</em><div>Irregularidade recente<small>Últimos 5: V V D V D</small></div></div></div>
+<p class="note">Análise feita a partir da tabela e dos resultados que encontrei; não são estatísticas avançadas (xG, posse etc.).</p>
+</section>
+
+<section id="s4">
+<div class="c"><h2>Artilheiros do Vasco em 2026</h2>
+<div class="t"><b>1</b><span>Thiago Mendes<br><small class="mut">Volante • capitão • até set.</small></span><b>8</b></div>
+<div class="t"><b>2</b><span>Claudio Spinelli<br><small class="mut">Atacante • dado de julho</small></span><b>6</b></div>
+<div class="t"><b>3</b><span>Puma Rodríguez<br><small class="mut">Lateral • gols decisivos na Copa do Brasil</small></span><b>–</b></div></div>
+<div class="c"><h2>Maiores artilheiros da história</h2>
+<div class="t"><b>🥇</b><span>Roberto Dinamite</span><b>708</b></div>
+<div class="t"><b>🥈</b><span>Romário</span><b>~326</b></div>
+<div class="t"><b>🥉</b><span>Ademir de Menezes</span><b>~301</b></div></div>
+<p class="note">Números de 2026 podem estar atrasados; totais históricos de Romário e Ademir são aproximados.</p>
+</section>
+
+<section id="s5">
+<div class="c"><h2>Objetivos de 2026</h2>
+<div class="i"><em>🔴</em><div style="flex:1">Ficar na Série A<small>16º, 2 pontos acima do Z4</small></div><span class="badge" style="background:var(--l)">URGENTE</span></div>
+<div class="i"><em>🏆</em><div style="flex:1">Final da Sul-Americana<small>Semifinal x Boca em 13 e 20/10; possível final brasileira</small></div><span class="badge" style="background:var(--w)">VIVO</span></div>
+<div class="i"><em>🏆</em><div style="flex:1">Final da Copa do Brasil<small>Semifinal x Palmeiras (início de novembro)</small></div><span class="badge" style="background:var(--w)">VIVO</span></div>
+<div class="i"><em>✖️</em><div style="flex:1">Carioca<small>Eliminado na semifinal</small></div><span class="badge" style="background:var(--d)">ENCERRADO</span></div>
+<div class="i"><em>🗳️</em><div style="flex:1">Votação administrativa<small>Futuro do clube será votado em outubro</small></div><span class="badge" style="background:#444">OUTUBRO</span></div></div>
+<div class="c"><h2>Calendário decisivo</h2>
+<p style="margin:0;font-size:14px;line-height:1.6">Outubro tem 7 jogos: Botafogo, Remo, Boca (ida), São Paulo, Boca (volta), Corinthians e Flamengo. É o mês que pode definir a permanência e uma final continental.</p></div>
+</section>
+
+<button id="cant">📣 TORCIDA!</button>
+<nav id="nv">
+<button class="on" data-s="0"><span>🏠</span>Início</button><button data-s="1"><span>📅</span>Jogos</button><button data-s="2"><span>⚠️</span>Z4</button><button data-s="3"><span>📊</span>Números</button><button data-s="4"><span>⚽</span>Gols</button><button data-s="5"><span>🎯</span>Metas</button>
+</nav>
+
+<script>
+function $(i){return document.getElementById(i)}
+var intro=$('intro');function closeIntro(){intro.classList.add('out');setTimeout(function(){intro.style.display='none'},900)}
+$('go').onclick=closeIntro;$('sk').onclick=closeIntro;setTimeout(closeIntro,12000);
+document.querySelectorAll('#nv button').forEach(function(b){b.onclick=function(){
+document.querySelectorAll('#nv button,section').forEach(function(e){e.classList.remove('on')});
+b.classList.add('on');$('s'+b.dataset.s).classList.add('on');window.scrollTo(0,0)}});
+// contagem regressiva
+var T=new Date('2026-10-07T20:30:00-03:00').getTime();
+function tick(){var s=Math.max(0,T-Date.now())/1000,d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=Math.floor(s%60);
+$('cd').innerHTML=[[d,'dias'],[h,'horas'],[m,'min'],[x,'seg']].map(function(a){return '<div><b>'+a[0]+'</b><small>'+a[1]+'</small></div>'}).join('')}
+tick();setInterval(tick,1000);
+// jogos [data,exibir,comp,adv,local,gv,ga,nota]
+var G=[
+['2026-10-07','07/10','Brasileirão','Botafogo','F',null,null,'20h30 • Prime Video'],
+['2026-10-10','10/10','Brasileirão','Remo','C',null,null,'17h • São Januário'],
+['2026-10-13','13/10','Sul-Americana','Boca Juniors','F',null,null,'Semifinal (ida)'],
+['2026-10-17','17/10','Brasileirão','São Paulo','F',null,null,'21h • Morumbis'],
+['2026-10-20','20/10','Sul-Americana','Boca Juniors','C',null,null,'Semifinal (volta) • local a definir'],
+['2026-10-24','24/10','Brasileirão','Corinthians','C',null,null,'18h30 • São Januário'],
+['2026-10-29','29/10','Brasileirão','Flamengo','C',null,null,'20h • Prime Video'],
+['2026-11-01','01/11','Copa do Brasil','Palmeiras','C',null,null,'Semifinal • data a confirmar'],
+['2026-11-04','04/11','Brasileirão','Athletico-PR','F',null,null,'Rodada 34'],
+['2026-11-18','18/11','Brasileirão','Internacional','C',null,null,'Rodada 35'],
+['2026-11-22','22/11','Brasileirão','Bragantino','F',null,null,'Rodada 36'],
+['2026-11-29','29/11','Brasileirão','Atlético-MG','F',null,null,'Rodada 37'],
+['2026-12-02','02/12','Brasileirão','Vitória','C',null,null,'Rodada 38'],
+['2026-09-19','19/09','Brasileirão','Coritiba','C',5,0,'São Januário'],
+['2026-09-15','15/09','Sul-Americana','Santa Fe','C',2,0,'Quartas (volta) • Bruno Duarte, David'],
+['2026-09-08','08/09','Sul-Americana','Santa Fe','F',0,0,'Quartas (ida)'],
+['2026-09-05','05/09','Brasileirão','Fluminense','F',0,1,''],
+['2026-09-02','02/09','Copa do Brasil','Vitória','F',2,0,'Quartas (volta) • Andrés Gómez, Puma'],
+['2026-08-26','ago','Copa do Brasil','Vitória','C',1,0,'Quartas (ida)'],
+['2026-08-23','23/08','Brasileirão','Palmeiras','F',1,4,'Colidio'],
+['2026-08-16','16/08','Brasileirão','Santos','C',0,3,''],
+['2026-08-09','09/08','Brasileirão','Bahia','F',0,0,''],
+['2026-07-25','25/07','Brasileirão','Mirassol','C',1,1,'Andrés Gómez'],
+['2026-07-16','16/07','Brasileirão','Vitória','F',0,1,''],
+['2026-05-31','31/05','Brasileirão','Atlético-MG','C',0,1,''],
+['2026-05-24','24/05','Brasileirão','Bragantino','C',0,3,''],
+['2026-05-16','16/05','Brasileirão','Internacional','F',1,4,'Andrés Gómez'],
+['2026-04-26','26/04','Brasileirão','Corinthians','F',0,1,''],
+['2026-04-21','21/04','Copa do Brasil','Paysandu','F',2,0,'5ª fase • Spinelli x2'],
+['2026-04-11','11/04','Brasileirão','Remo','F',1,1,'Andrés Gómez'],
+['2026-04-07','07/04','Sul-Americana','Barracas Central','F',0,0,''],
+['2026-04-04','04/04','Brasileirão','Botafogo','C',1,2,'David'],
+['2026-04-01','01/04','Brasileirão','Coritiba','F',1,1,'Tchê Tchê'],
+['2026-03-12','12/03','Brasileirão','Palmeiras','C',2,1,'Cuiabano, Thiago Mendes'],
+['2026-02-26','26/02','Brasileirão','Santos','F',1,2,'Barros'],
+['2026-02-11','11/02','Brasileirão','Bahia','C',0,1,''],
+['2026-02-05','05/02','Brasileirão','Chapecoense','C',1,1,'Puma Rodríguez'],
+['2026-01-29','29/01','Brasileirão','Mirassol','F',1,2,'Coutinho']];
+var cs=['Todos','Próximos','Brasileirão','Sul-Americana','Copa do Brasil'],cur='Todos';
+function draw(){var l=G.filter(function(g){return cur=='Todos'||(cur=='Próximos'?g[5]===null:g[2]==cur)});
+l.sort(function(a,b){var u=a[5]===null,v=b[5]===null;if(u!=v)return u?-1:1;return u?(a[0]<b[0]?-1:1):(a[0]<b[0]?1:-1)});
+$('gl').innerHTML=l.map(function(g){var u=g[5]===null,h=g[4]=='C',t=h?'Vasco x '+g[3]:g[3]+' x Vasco',r='';
+if(!u){var k=g[5]>g[6]?'V':g[5]<g[6]?'D':'E',s=h?g[5]+' x '+g[6]:g[6]+' x '+g[5];r='<div class="sc '+k+'">'+s+'</div>'}
+return '<div class="g"><div class="dt"><b>'+g[1]+'</b></div><div class="m">'+t+'<span class="tg">'+g[2]+'</span><small>'+g[7]+'</small></div>'+r+'</div>'}).join('')}
+$('ch').innerHTML=cs.map(function(c){return '<button class="'+(c==cur?'on':'')+'">'+c+'</button>'}).join('');
+document.querySelectorAll('#ch button').forEach(function(b){b.onclick=function(){cur=b.textContent;document.querySelectorAll('#ch button').forEach(function(x){x.classList.toggle('on',x==b)});draw()}});
+draw();
+// simulador
+var S={v:3,e:4};
+function sim(){var d=11-S.v-S.e,p=31+3*S.v+S.e;$('v').textContent=S.v;$('e').textContent=S.e;$('dd').textContent=d;
+$('pb').style.width=Math.min(100,p/64*100)+'%';
+var r=$('rs');r.innerHTML='Projeção: '+p+' pontos'+(p>=45?' <span class="ok">• fora do perigo (meta de 45)</span>':' <span class="bad">• faltam '+(45-p)+' para a meta de 45</span>')}
+document.querySelectorAll('.sim button').forEach(function(b){b.onclick=function(){var k=b.dataset.k,n=S[k]+(+b.dataset.d);
+if(n<0||S.v+S.e+(+b.dataset.d)>11)return;S[k]=n;sim()}});
+sim();
+
+// títulos passando ao fundo
+(function(){var T=[[1998,'Libertadores'],[1974,'Brasileiro'],[1989,'Brasileiro'],[1997,'Brasileiro'],[2000,'Brasileiro'],[2000,'Mercosul'],[2011,'Copa do Brasil'],[1958,'Rio-São Paulo'],[1948,'Sul-Americano de Campeões']];
+var cup='<svg viewBox="0 0 24 24"><path d="M7 3h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H3v2a4 4 0 0 0 4 4M17 5h4v2a4 4 0 0 1-4 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>';
+var h=T.concat(T).map(function(t){return '<div class="tc">'+cup+'<div><b>'+t[0]+'</b><small>'+t[1]+'</small></div></div>'}).join('');
+$('bgt').innerHTML='<div>'+h+'</div>'})();
+// som (Web Audio, sintetizado)
+var AC,NB,ON=true,AMB=null;
+function ac(){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();var n=AC.sampleRate*2;NB=AC.createBuffer(1,n,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<n;i++)d[i]=Math.random()*2-1}
+if(AC.state!='running')AC.resume();return AC}
+function ns(){var s=AC.createBufferSource();s.buffer=NB;s.loop=true;return s}
+function ev(g,t,a,pk,du){g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(pk,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+du)}
+function roar(du,pk){if(!ON)return;var a=ac(),t=a.currentTime,s=ns(),f=a.createBiquadFilter(),g=a.createGain();f.type='bandpass';f.Q.value=.7;f.frequency.setValueAtTime(500,t);f.frequency.linearRampToValueAtTime(1500,t+du*.6);ev(g,t,du*.4,pk||.5,du);s.connect(f);f.connect(g);g.connect(a.destination);s.start(t);s.stop(t+du+.1)}
+function drum(t,f0,f1,du,pk){var a=ac(),o=a.createOscillator(),g=a.createGain();o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+du);ev(g,t,.005,pk,du);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+du+.05)}
+function thump(){if(!ON)return;drum(ac().currentTime,130,40,.3,.9)}
+function tone(type,fr,du,pk,t0,to){var a=ac(),t=t0||a.currentTime,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(fr,t);if(to)o.frequency.exponentialRampToValueAtTime(to,t+du);ev(g,t,.01,pk,du);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+du+.05)}
+function horn(){if(!ON)return;ac();tone('sawtooth',233,.7,.12);tone('sawtooth',294,.7,.1)}
+function whistle(){if(!ON)return;ac();tone('sine',2300,.4,.15,0,3100)}
+function chime(){if(!ON)return;ac();tone('sine',880,1.4,.2);tone('sine',1320,1.2,.12);tone('sine',1760,1,.07)}
+function ticks(){if(!ON)return;var t=ac().currentTime;for(var i=0;i<3;i++)tone('square',1100+i*150,.05,.06,t+i*.08)}
+function tense(){if(!ON)return;var t=ac().currentTime;tone('sine',70,1,.35,t);drum(t,90,45,.25,.8);drum(t+.28,90,45,.25,.6);drum(t+.9,90,45,.25,.8);drum(t+1.18,90,45,.25,.6)}
+function blip(f){if(!ON)return;ac();tone('triangle',f,.15,.15,0,f*1.4)}
+function cantar(){if(!ON)return;var a=ac(),t=a.currentTime;roar(4.5,.55);
+for(var i=0;i<12;i++){drum(t+i*.38,110,45,.28,.9);if(i%2)drum(t+i*.38+.19,180,80,.12,.4)}
+var N=[196,196,220,247,294,247,220,196,196,220,247,262];
+N.forEach(function(fr,i){var o=a.createOscillator(),f=a.createBiquadFilter(),g=a.createGain(),v=a.createOscillator(),vg=a.createGain(),s=t+.3+i*.36;
+o.type='sawtooth';o.frequency.value=fr;v.frequency.value=5.5;vg.gain.value=3;v.connect(vg);vg.connect(o.frequency);
+f.type='bandpass';f.frequency.value=700;f.Q.value=3;ev(g,s,.05,.07,.34);o.connect(f);f.connect(g);g.connect(a.destination);o.start(s);o.stop(s+.4);v.start(s);v.stop(s+.4)})}
+function amb(on){if(on&&!AMB&&ON){var a=ac(),s=ns(),f=a.createBiquadFilter(),g=a.createGain(),l=a.createOscillator(),lg=a.createGain();f.type='bandpass';f.frequency.value=900;f.Q.value=.5;g.gain.value=.05;l.frequency.value=.15;lg.gain.value=.025;l.connect(lg);lg.connect(g.gain);s.connect(f);f.connect(g);g.connect(a.destination);s.start();l.start();AMB={s:s,l:l}}
+else if(!on&&AMB){AMB.s.stop();AMB.l.stop();AMB=null}}
+$('snd').onclick=function(e){e.stopPropagation();ON=!ON;this.textContent=ON?'🔊':'🔇';amb(ON);if(ON)blip(660)};
+$('cant').onclick=cantar;
+$('go').addEventListener('click',function(){cantar();setTimeout(function(){amb(true)},300)});
+$('sk').addEventListener('click',function(){roar(2,.4);amb(true)});
+var NS=[horn,function(){thump();roar(.8,.3)},tense,ticks,function(){roar(2.2,.6);horn()},chime];
+document.querySelectorAll('#nv button').forEach(function(b){b.addEventListener('click',function(){NS[+b.dataset.s]()})});
+document.querySelectorAll('#ch button').forEach(function(b){b.addEventListener('click',whistle)});
+document.querySelectorAll('.sim button').forEach(function(b){b.addEventListener('click',function(){blip(b.dataset.k=='v'?(b.dataset.d>0?880:500):(b.dataset.d>0?660:400))})});
+// ícone para a tela inicial
+try{var c=document.createElement('canvas');c.width=c.height=180;var x=c.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,180,180);
+x.fillStyle='#fff';x.beginPath();x.moveTo(0,40);x.lineTo(60,0);x.lineTo(180,140);x.lineTo(120,180);x.lineTo(0,40);x.globalAlpha=.15;x.fill();x.globalAlpha=1;
+x.font='bold 86px Arial';x.textAlign='center';x.fillText('VG',90,115);x.fillStyle='#d32f2f';x.fillRect(40,132,100,6);
+var l=document.createElement('link');l.rel='apple-touch-icon';l.href=c.toDataURL('image/png');document.head.appendChild(l)}catch(e){}
+</script>
+</body></html>
